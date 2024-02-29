@@ -11,6 +11,7 @@ find_package(rclcpp REQUIRED)
 find_package(std_msgs REQUIRED)
 
 
+
 include_directories(include/rwa2_borad)
 add_executable(thermostat_house src/thermostat_interface.cpp)
 ament_target_dependencies(thermostat_house rclcpp std_msgs)
@@ -18,5 +19,12 @@ ament_target_dependencies(thermostat_house rclcpp std_msgs)
 install(TARGETS 
         thermostat_house 
         DESTINATION lib/${PROJECT_NAME})
+
+install(DIRECTORY
+        include
+        launch
+        config
+        DESTINATION share/${PROJECT_NAME}
+)
 
 ament_package()

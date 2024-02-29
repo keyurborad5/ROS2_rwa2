@@ -1,0 +1,4 @@
+thermostat_house:
+  ros__parameters:
+    thermostat_name : "thermostat"
+    target_temperature: 30
