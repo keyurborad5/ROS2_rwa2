@@ -12,6 +12,9 @@ void rwa2::ThermostateInterface::thermostat_timer_cb(){
 
 void rwa2::ThermostateInterface::thermostat_sub_cb(const std_msgs::msg::Int32::SharedPtr msg ){
     RCLCPP_INFO_STREAM(this->get_logger(),"Current temperature :"<< msg->data);
+    RCLCPP_INFO_STREAM(this->get_logger(),"Thermostate name :"<< thermostate_name_);
+    RCLCPP_INFO_STREAM(this->get_logger(),"target_temperature :"<< target_temperature_);
+
 
 }
 

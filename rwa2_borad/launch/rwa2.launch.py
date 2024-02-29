@@ -29,6 +29,8 @@ def generate_launch_description():
     thermostat_house_cpp = Node(
         package="rwa2_borad",
         executable="thermostat_house",
+        parameters=[{"cmd_line_parameter": LaunchConfiguration("cmd_line_parameter")},
+                        node_params,],
     )
     # av_sensors_cpp = Node(
     #     package="av_demo",
@@ -40,7 +42,7 @@ def generate_launch_description():
     #     ],
     # )
 
-    # ld.add_action(cmd_line_parameter)
+    ld.add_action(cmd_line_parameter)
     ld.add_action(thermostat_house_cpp)
 
 
