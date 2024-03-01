@@ -64,16 +64,7 @@ def generate_launch_description():
         parameters=[{"mode": LaunchConfiguration("mode")},
                         node_params,],
     )
-    # av_sensors_cpp = Node(
-    #     package="av_demo",
-    #     executable="av_sensors_demo",
-    #     remappings=[("av_lidar","av_lidar2")],
-    #     parameters=[
-    #         {"cmd_line_parameter": LaunchConfiguration("cmd_line_parameter")},
-    #         node_params,
-    #     ],
-    # )
-
+    # 
     ld.add_action(cmd_line_parameter)
     # ld.add_action(thermostat_house_cpp)
     ld.add_action(thermostat_kitchen_cpp)
