@@ -1,6 +1,7 @@
 #pragma once
 #include<rclcpp/rclcpp.hpp>
 #include<std_msgs/msg/int32.hpp>
+#include "rcl_interfaces/msg/set_parameters_result.hpp"
 #include<memory.h>
 
 namespace rwa2{
@@ -14,9 +15,13 @@ namespace rwa2{
             //-----------------
             this->declare_parameter("thermostat_name","thermostat");
             this->declare_parameter("target_temperature",30);
+            this->declare_parameter("mode","away");
+            mode_ = this->get_parameter("mode").as_string();
             thermostate_name_ = this->get_parameter("thermostat_name").as_string();
             target_temperature_ = this->get_parameter("target_temperature").as_int();
 
+            parameter_cb_= this->add_on_set_parameters_callback(std::bind(&rwa2::ThermostateInterface::parameter_cb,this,std::placeholders::_1));
+            generate_random_temp();
 
             //initiating attribute publisher_
             publisher_ =this->create_publisher<std_msgs::msg::Int32>("temperature", 10); //creating publisher with msg type bool and ( topic , buffer size)
@@ -31,12 +36,15 @@ namespace rwa2{
         rclcpp::Subscription<std_msgs::msg::Int32>::SharedPtr subscriber_;
         void thermostat_sub_cb(const std_msgs::msg::Int32::SharedPtr msg);
 
-
+        OnSetParametersCallbackHandle::SharedPtr parameter_cb_;
         std_msgs::msg::Int32 current_temperature_;
         std::string thermostate_name_;
-        int target_temperature_;
+        std::string mode_;
 
+        int target_temperature_;
+        rcl_interfaces::msg::SetParametersResult parameter_cb(const std::vector<rclcpp::Parameter>& parameters);
         void thermostat_timer_cb();
+        void generate_random_temp();
 
 
 
