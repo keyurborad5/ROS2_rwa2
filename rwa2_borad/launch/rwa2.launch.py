@@ -13,8 +13,8 @@ def generate_launch_description():
 
     # Declare a command-line argument "cmd_line_parameter"
     cmd_line_parameter = DeclareLaunchArgument(
-        "cmd_line_parameter",
-        default_value="default_value",
+        "mode",
+        default_value="away",
         description="A parameter from the command line.",
     )
 
@@ -29,7 +29,7 @@ def generate_launch_description():
     thermostat_house_cpp = Node(
         package="rwa2_borad",
         executable="thermostat_house",
-        parameters=[{"cmd_line_parameter": LaunchConfiguration("cmd_line_parameter")},
+        parameters=[{"mode": LaunchConfiguration("mode")},
                         node_params,],
     )
     # av_sensors_cpp = Node(
