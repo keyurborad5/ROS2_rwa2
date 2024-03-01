@@ -32,6 +32,38 @@ def generate_launch_description():
         parameters=[{"mode": LaunchConfiguration("mode")},
                         node_params,],
     )
+
+    thermostat_kitchen_cpp = Node(
+        package="rwa2_borad",
+        executable="thermostat_house",
+        name="thermostat_kitchen",
+        output='screen',
+        remappings=[("temperature","thermostat_kitchen")],
+        # parameters=[node_params],
+        parameters=[{"mode": LaunchConfiguration("mode")},
+                        node_params,],
+    )
+
+    thermostat_livingroom_cpp = Node(
+        package="rwa2_borad",
+        executable="thermostat_house",
+        name="thermostat_livingroom",
+        output='screen',
+        remappings=[("temperature","thermostat_livingroom")],
+        # parameters=[node_params],
+        parameters=[{"mode": LaunchConfiguration("mode")},
+                        node_params,],
+    )
+    thermostat_bedroom_cpp = Node(
+        package="rwa2_borad",
+        executable="thermostat_house",
+        name="thermostat_bedroom",
+        output='screen',
+        remappings=[("temperature","thermostat_bedroom")],
+        # parameters=[node_params],
+        parameters=[{"mode": LaunchConfiguration("mode")},
+                        node_params,],
+    )
     # av_sensors_cpp = Node(
     #     package="av_demo",
     #     executable="av_sensors_demo",
@@ -43,7 +75,11 @@ def generate_launch_description():
     # )
 
     ld.add_action(cmd_line_parameter)
-    ld.add_action(thermostat_house_cpp)
+    # ld.add_action(thermostat_house_cpp)
+    ld.add_action(thermostat_kitchen_cpp)
+    ld.add_action(thermostat_livingroom_cpp)
+    ld.add_action(thermostat_bedroom_cpp)
+
 
 
     return ld

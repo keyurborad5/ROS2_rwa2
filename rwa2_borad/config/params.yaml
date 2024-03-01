@@ -3,3 +3,18 @@ thermostat_house:
     thermostat_name : "thermostat"
     target_temperature: 30
     # mode: "away"
+thermostat_kitchen:
+  ros__parameters:
+    thermostat_name: "kitchen"
+    target_temperature : 12
+
+thermostat_livingroom:
+  ros__parameters:
+    thermostat_name: "livingroom"
+    target_temperature : 14
+
+thermostat_bedroom:
+  ros__parameters:
+    thermostat_name: "bedroom"
+    target_temperature : 15
+   

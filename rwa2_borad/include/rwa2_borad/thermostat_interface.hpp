@@ -3,14 +3,17 @@
 #include<std_msgs/msg/int32.hpp>
 #include "rcl_interfaces/msg/set_parameters_result.hpp"
 #include<memory.h>
+#include<random>
 
 namespace rwa2{
     class ThermostateInterface: public rclcpp::Node{
         public:
         //creating constructor
         ThermostateInterface(std::string node_name): Node(node_name){
-
-            srand(time(NULL));
+            std::random_device rd;
+            std::mt19937 gen(rd());
+            std::uniform_int_distribution<> dis(1,1000);
+            srand(dis(gen));
             //-----------------
             //PARAMETERS
             //-----------------
